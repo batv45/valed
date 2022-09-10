@@ -7,12 +7,9 @@
 
         <title inertia>{{ config('app.name', 'Valed') }}</title>
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
         <!-- Scripts -->
         @routes
-        <script src="{{ mix('js/app.js') }}" defer></script>
+        @vite('resources/js/app.js')
         @inertiaHead
     </head>
     <body>

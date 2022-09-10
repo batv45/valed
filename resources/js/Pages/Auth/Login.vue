@@ -1,3 +1,25 @@
+<script setup>
+import {Link, useForm} from "@inertiajs/inertia-vue3";
+import AuthLayout from "@/Layouts/AuthLayout.vue";
+import FormInput from "@/Components/Form/Input.vue"
+import {ref} from "vue";
+
+const form = useForm({
+    email: 'asd@asd.com',
+    password: '123123',
+    remember: false
+})
+
+const submitLogin = () => {
+    form.post(route('login'))
+}
+
+const viewPassword = ref(false)
+const changeViewPassword = () => {
+    viewPassword.value = !viewPassword.value
+}
+</script>
+
 <template>
   <AuthLayout>
       <div class="text-center mb-4">
@@ -12,7 +34,7 @@
               <div class="mb-3">
                   <FormInput :type="viewPassword ? 'text' : 'password'" v-model="form.password" :error="form.errors.password" required>
                       <template #label>Şifre<span class="form-label-description">
-                            <Link :href="route('password.request')">Şifremi unuttum</Link>
+                            <Link :href="route('password.request')" tabindex="-1">Şifremi unuttum</Link>
                           </span>
                       </template>
                       <template #input-right>
@@ -48,29 +70,3 @@
       </div>
   </AuthLayout>
 </template>
-
-<script setup>
-import {Link, useForm} from "@inertiajs/inertia-vue3";
-import AuthLayout from "@/Layouts/AuthLayout";
-import FormInput from "@/Components/Form/Input"
-import {ref} from "vue";
-
-const form = useForm({
-    email: null,
-    password: null,
-    remember: false
-})
-
-const submitLogin = () => {
-    form.post(route('login'))
-}
-
-const viewPassword = ref(false)
-const changeViewPassword = () => {
-    viewPassword.value = !viewPassword.value
-}
-</script>
-
-<style scoped>
-
-</style>

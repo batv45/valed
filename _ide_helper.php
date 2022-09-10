@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.17.0.
+ * Generated for Laravel 9.21.6.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2793,10 +2793,10 @@
          * @return void 
          * @static 
          */ 
-        public static function userAuthenticationRoutes($attributes = null)
+        public static function userRoutes($attributes = null)
         {
                         /** @var \Illuminate\Broadcasting\BroadcastManager $instance */
-                        $instance->userAuthenticationRoutes($attributes);
+                        $instance->userRoutes($attributes);
         }
                     /**
          * Register the routes for handling broadcast authentication and sockets.
@@ -2807,10 +2807,10 @@
          * @return void 
          * @static 
          */ 
-        public static function channelAuthorizationRoutes($attributes = null)
+        public static function channelRoutes($attributes = null)
         {
                         /** @var \Illuminate\Broadcasting\BroadcastManager $instance */
-                        $instance->channelAuthorizationRoutes($attributes);
+                        $instance->channelRoutes($attributes);
         }
                     /**
          * Get the socket ID for the given request.
@@ -5210,6 +5210,52 @@
                         $instance->logQuery($query, $bindings, $time);
         }
                     /**
+         * Register a callback to be invoked when the connection queries for longer than a given amount of time.
+         *
+         * @param \DateTimeInterface|\Carbon\CarbonInterval|float|int $threshold
+         * @param callable $handler
+         * @return void 
+         * @static 
+         */ 
+        public static function whenQueryingForLongerThan($threshold, $handler)
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        $instance->whenQueryingForLongerThan($threshold, $handler);
+        }
+                    /**
+         * Allow all the query duration handlers to run again, even if they have already run.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function allowQueryDurationHandlersToRunAgain()
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        $instance->allowQueryDurationHandlersToRunAgain();
+        }
+                    /**
+         * Get the duration of all run queries in milliseconds.
+         *
+         * @return float 
+         * @static 
+         */ 
+        public static function totalQueryDuration()
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        return $instance->totalQueryDuration();
+        }
+                    /**
+         * Reset the duration of all run queries.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function resetTotalQueryDuration()
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        $instance->resetTotalQueryDuration();
+        }
+                    /**
          * Register a hook to be run just before a database query is executed.
          *
          * @param \Closure $callback
@@ -6065,7 +6111,7 @@
          * Assert if an event has a listener attached to it.
          *
          * @param string $expectedEvent
-         * @param string $expectedListener
+         * @param string|array $expectedListener
          * @return void 
          * @static 
          */ 
@@ -7085,6 +7131,33 @@
                         /** @var \Illuminate\Auth\Access\Gate $instance */
                         return $instance->setContainer($container);
         }
+                    /**
+         * Deny with a HTTP status code.
+         *
+         * @param int $status
+         * @param \Illuminate\Auth\Access\?string $message
+         * @param \Illuminate\Auth\Access\?int $code
+         * @return \Illuminate\Auth\Access\Response 
+         * @static 
+         */ 
+        public static function denyWithStatus($status, $message = null, $code = null)
+        {
+                        /** @var \Illuminate\Auth\Access\Gate $instance */
+                        return $instance->denyWithStatus($status, $message, $code);
+        }
+                    /**
+         * Deny with a 404 HTTP status code.
+         *
+         * @param \Illuminate\Auth\Access\?string $message
+         * @param \Illuminate\Auth\Access\?int $code
+         * @return \Illuminate\Auth\Access\Response 
+         * @static 
+         */ 
+        public static function denyAsNotFound($message = null, $code = null)
+        {
+                        /** @var \Illuminate\Auth\Access\Gate $instance */
+                        return $instance->denyAsNotFound($message, $code);
+        }
          
     }
             /**
@@ -7271,7 +7344,7 @@
      * @method static \Illuminate\Http\Client\PendingRequest asJson()
      * @method static \Illuminate\Http\Client\PendingRequest asMultipart()
      * @method static \Illuminate\Http\Client\PendingRequest async()
-     * @method static \Illuminate\Http\Client\PendingRequest attach(string|array $name, string $contents = '', string|null $filename = null, array $headers = [])
+     * @method static \Illuminate\Http\Client\PendingRequest attach(string|array $name, string|resource $contents = '', string|null $filename = null, array $headers = [])
      * @method static \Illuminate\Http\Client\PendingRequest baseUrl(string $url)
      * @method static \Illuminate\Http\Client\PendingRequest beforeSending(callable $callback)
      * @method static \Illuminate\Http\Client\PendingRequest bodyFormat(string $format)
@@ -7279,6 +7352,7 @@
      * @method static \Illuminate\Http\Client\PendingRequest contentType(string $contentType)
      * @method static \Illuminate\Http\Client\PendingRequest dd()
      * @method static \Illuminate\Http\Client\PendingRequest dump()
+     * @method static \Illuminate\Http\Client\PendingRequest maxRedirects(int $max)
      * @method static \Illuminate\Http\Client\PendingRequest retry(int $times, int $sleepMilliseconds = 0, ?callable $when = null, bool $throw = true)
      * @method static \Illuminate\Http\Client\PendingRequest sink(string|resource $to)
      * @method static \Illuminate\Http\Client\PendingRequest stub(callable $callback)
@@ -7371,7 +7445,7 @@
                         return $instance->stubUrl($url, $callback);
         }
                     /**
-         * Indicate that an exception should not be thrown if any request is not faked.
+         * Indicate that an exception should be thrown if any request is not faked.
          *
          * @param bool $prevent
          * @return \Illuminate\Http\Client\Factory 
@@ -10063,6 +10137,39 @@
                         return $instance->fullUrlIs(...$patterns);
         }
                     /**
+         * Get the host name.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function host()
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->host();
+        }
+                    /**
+         * Get the HTTP host being requested.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function httpHost()
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->httpHost();
+        }
+                    /**
+         * Get the scheme and HTTP host.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function schemeAndHttpHost()
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->schemeAndHttpHost();
+        }
+                    /**
          * Determine if the request is the result of an AJAX call.
          *
          * @return bool 
@@ -11705,6 +11812,19 @@
         {
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->date($key, $format, $tz);
+        }
+                    /**
+         * Retrieve input from the request as an enum.
+         *
+         * @param string $key
+         * @param string $enumClass
+         * @return mixed|null 
+         * @static 
+         */ 
+        public static function enum($key, $enumClass)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->enum($key, $enumClass);
         }
                     /**
          * Retrieve input from the request as a collection.
@@ -14705,6 +14825,17 @@
                         return $instance->url($path);
         }
                     /**
+         * Determine if temporary URLs can be generated.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function providesTemporaryUrls()
+        {
+                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+                        return $instance->providesTemporaryUrls();
+        }
+                    /**
          * Get a temporary URL for the file at the given path.
          *
          * @param string $path
@@ -16520,7 +16651,1110 @@
      
 }
 
-        namespace Spatie\LaravelIgnition\Facades { 
+        namespace Deligoez\TCKimlikNo\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class TCKimlikNo {
+                    /**
+         * Validates Citizenship Number using nvi.gov.tr.
+         *
+         * @param string $tcKimlikNo
+         * @param string $name
+         * @param string $surname
+         * @param string $birthYear
+         * @param bool $autoUppercase
+         * @return bool 
+         * @throws \SoapFault
+         * @static 
+         */ 
+        public static function validate($tcKimlikNo, $name, $surname, $birthYear, $autoUppercase = true)
+        {
+                        return \Deligoez\TCKimlikNo\TCKimlikNo::validate($tcKimlikNo, $name, $surname, $birthYear, $autoUppercase);
+        }
+                    /**
+         * Verify Citizenship Number According to it's Algorithm.
+         *
+         * @param string $tcKimlikNo
+         * @return bool 
+         * @static 
+         */ 
+        public static function verify($tcKimlikNo)
+        {
+                        return \Deligoez\TCKimlikNo\TCKimlikNo::verify($tcKimlikNo);
+        }
+                    /**
+         * Generates Checksum Digits from the first 9 Digits.
+         *
+         * @param $tcKimlikNo
+         * @return string 
+         * @static 
+         */ 
+        public static function generateChecksumDigits($tcKimlikNo)
+        {
+                        return \Deligoez\TCKimlikNo\TCKimlikNo::generateChecksumDigits($tcKimlikNo);
+        }
+         
+    }
+     
+}
+
+    namespace RouterOS\Laravel { 
+            /**
+     * 
+     *
+     */ 
+        class Facade {
+                    /**
+         * Alias for \RouterOS::client() method
+         *
+         * @param array $params
+         * @return \RouterOS\Client 
+         * @throws \RouterOS\Exceptions\ClientException
+         * @throws \RouterOS\Exceptions\ConfigException
+         * @throws \RouterOS\Exceptions\QueryException
+         * @deprecated 
+         * @codeCoverageIgnore 
+         * @static 
+         */ 
+        public static function getClient($params = [])
+        {
+                        /** @var \RouterOS\Laravel\Wrapper $instance */
+                        return $instance->getClient($params);
+        }
+                    /**
+         * Get configs of library
+         *
+         * @param array $params
+         * @return \RouterOS\Interfaces\ConfigInterface 
+         * @throws \RouterOS\Exceptions\ConfigException
+         * @static 
+         */ 
+        public static function config($params = [])
+        {
+                        /** @var \RouterOS\Laravel\Wrapper $instance */
+                        return $instance->config($params);
+        }
+                    /**
+         * Instantiate client object
+         *
+         * @param array $params
+         * @param bool $autoConnect
+         * @return \RouterOS\Interfaces\ClientInterface 
+         * @throws \RouterOS\Exceptions\ClientException
+         * @throws \RouterOS\Exceptions\ConfigException
+         * @throws \RouterOS\Exceptions\QueryException
+         * @static 
+         */ 
+        public static function client($params = [], $autoConnect = true)
+        {
+                        /** @var \RouterOS\Laravel\Wrapper $instance */
+                        return $instance->client($params, $autoConnect);
+        }
+         
+    }
+     
+}
+
+    namespace Clockwork\Support\Laravel { 
+            /**
+     * 
+     *
+     */ 
+        class Facade {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addDataSource($dataSource)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->addDataSource($dataSource);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function resolveRequest()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->resolveRequest();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function resolveAsCommand($name, $exitCode = null, $arguments = [], $options = [], $argumentsDefaults = [], $optionsDefaults = [], $output = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->resolveAsCommand($name, $exitCode, $arguments, $options, $argumentsDefaults, $optionsDefaults, $output);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function resolveAsQueueJob($name, $description = null, $status = 'processed', $payload = [], $queue = null, $connection = null, $options = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->resolveAsQueueJob($name, $description, $status, $payload, $queue, $connection, $options);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function resolveAsTest($name, $status = 'passed', $statusMessage = null, $asserts = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->resolveAsTest($name, $status, $statusMessage, $asserts);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function extendRequest($request = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->extendRequest($request);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function storeRequest()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->storeRequest();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function reset()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->reset();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function request($request = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->request($request);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function log($level = null, $message = null, $context = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->log($level, $message, $context);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function timeline()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->timeline();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function event($description, $data = [])
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->event($description, $data);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function shouldCollect($shouldCollect = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->shouldCollect($shouldCollect);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function shouldRecord($shouldRecord = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->shouldRecord($shouldRecord);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function dataSources($dataSources = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->dataSources($dataSources);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function storage($storage = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->storage($storage);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function authenticator($authenticator = null)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->authenticator($authenticator);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getDataSources()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->getDataSources();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getRequest()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->getRequest();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setRequest($request)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->setRequest($request);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getStorage()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->getStorage();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setStorage($storage)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->setStorage($storage);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getAuthenticator()
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->getAuthenticator();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setAuthenticator($authenticator)
+        {
+                        /** @var \Clockwork\Clockwork $instance */
+                        return $instance->setAuthenticator($authenticator);
+        }
+         
+    }
+     
+}
+
+    namespace Laracasts\Flash { 
+            /**
+     * 
+     *
+     */ 
+        class Flash {
+                    /**
+         * Flash an information message.
+         *
+         * @param string|null $message
+         * @return \Laracasts\Flash\FlashNotifier 
+         * @static 
+         */ 
+        public static function info($message = null)
+        {
+                        /** @var \Laracasts\Flash\FlashNotifier $instance */
+                        return $instance->info($message);
+        }
+                    /**
+         * Flash a success message.
+         *
+         * @param string|null $message
+         * @return \Laracasts\Flash\FlashNotifier 
+         * @static 
+         */ 
+        public static function success($message = null)
+        {
+                        /** @var \Laracasts\Flash\FlashNotifier $instance */
+                        return $instance->success($message);
+        }
+                    /**
+         * Flash an error message.
+         *
+         * @param string|null $message
+         * @return \Laracasts\Flash\FlashNotifier 
+         * @static 
+         */ 
+        public static function error($message = null)
+        {
+                        /** @var \Laracasts\Flash\FlashNotifier $instance */
+                        return $instance->error($message);
+        }
+                    /**
+         * Flash a warning message.
+         *
+         * @param string|null $message
+         * @return \Laracasts\Flash\FlashNotifier 
+         * @static 
+         */ 
+        public static function warning($message = null)
+        {
+                        /** @var \Laracasts\Flash\FlashNotifier $instance */
+                        return $instance->warning($message);
+        }
+                    /**
+         * Flash a general message.
+         *
+         * @param string|null $message
+         * @param string|null $level
+         * @return \Laracasts\Flash\FlashNotifier 
+         * @static 
+         */ 
+        public static function message($message = null, $level = null)
+        {
+                        /** @var \Laracasts\Flash\FlashNotifier $instance */
+                        return $instance->message($message, $level);
+        }
+                    /**
+         * Flash an overlay modal.
+         *
+         * @param string|null $message
+         * @param string $title
+         * @return \Laracasts\Flash\FlashNotifier 
+         * @static 
+         */ 
+        public static function overlay($message = null, $title = 'Notice')
+        {
+                        /** @var \Laracasts\Flash\FlashNotifier $instance */
+                        return $instance->overlay($message, $title);
+        }
+                    /**
+         * Add an "important" flash to the session.
+         *
+         * @return \Laracasts\Flash\FlashNotifier 
+         * @static 
+         */ 
+        public static function important()
+        {
+                        /** @var \Laracasts\Flash\FlashNotifier $instance */
+                        return $instance->important();
+        }
+                    /**
+         * Clear all registered messages.
+         *
+         * @return \Laracasts\Flash\FlashNotifier 
+         * @static 
+         */ 
+        public static function clear()
+        {
+                        /** @var \Laracasts\Flash\FlashNotifier $instance */
+                        return $instance->clear();
+        }
+                    /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+                        \Laracasts\Flash\FlashNotifier::macro($name, $macro);
+        }
+                    /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin, $replace = true)
+        {
+                        \Laracasts\Flash\FlashNotifier::mixin($mixin, $replace);
+        }
+                    /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+                        return \Laracasts\Flash\FlashNotifier::hasMacro($name);
+        }
+                    /**
+         * Flush the existing macros.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function flushMacros()
+        {
+                        \Laracasts\Flash\FlashNotifier::flushMacros();
+        }
+         
+    }
+     
+}
+
+    namespace RealRashid\SweetAlert\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Alert {
+                    /**
+         * The default configuration for middleware alert.
+         *
+         * @return \RealRashid\SweetAlert\$config 
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function middleware()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->middleware();
+        }
+                    /**
+         * Flash an alert message.
+         *
+         * @param string $title
+         * @param string $text
+         * @param array $icon
+         * @return void 
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function alert($title = '', $text = '', $icon = null)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        $instance->alert($title, $text, $icon);
+        }
+                    /**
+         * Display a success typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function success($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->success($title, $text);
+        }
+                    /**
+         * Display a info typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function info($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->info($title, $text);
+        }
+                    /**
+         * Display a warning typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function warning($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->warning($title, $text);
+        }
+                    /**
+         * Display a question typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function question($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->question($title, $text);
+        }
+                    /**
+         * Display a error typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function error($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->error($title, $text);
+        }
+                    /**
+         * Display a message with a custom image and CSS animation disabled.
+         *
+         * @param string $title
+         * @param string $text
+         * @param string $imageUrl
+         * @param integer $imageWidth
+         * @param integer $imageHeight
+         * @param string $imageAlt
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function image($title, $text, $imageUrl, $imageWidth, $imageHeight, $imageAlt = null)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->image($title, $text, $imageUrl, $imageWidth, $imageHeight, $imageAlt);
+        }
+                    /**
+         * Display a html typed alert message with html code.
+         *
+         * @param string $title
+         * @param string $code
+         * @param string $icon
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function html($title = '', $code = '', $icon = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->html($title, $code, $icon);
+        }
+                    /**
+         * Display a toast message
+         *
+         * @param string $title
+         * @param string $icon
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function toast($title = '', $icon = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->toast($title, $icon);
+        }
+                    /**
+         * Convert any alert modal to Toast
+         *
+         * @param string $position
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function toToast($position = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->toToast($position);
+        }
+                    /**
+         * Convert any alert modal to html
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function toHtml()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->toHtml();
+        }
+                    /**
+         * Add a custom image to alert
+         *
+         * @param string $imageUrl
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function addImage($imageUrl)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->addImage($imageUrl);
+        }
+                    /**
+         * Add footer section to alert()
+         *
+         * @param string $code
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function footer($code)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->footer($code);
+        }
+                    /**
+         * positioned alert dialog
+         *
+         * @param string $position
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function position($position = 'top-end')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->position($position);
+        }
+                    /**
+         * Modal window width
+         * including paddings
+         * (box-sizing: border-box).
+         * 
+         * Can be in px or %. The default width is 32rem
+         *
+         * @param string $width
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function width($width = '32rem')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->width($width);
+        }
+                    /**
+         * Modal window padding.
+         * 
+         * The default padding is 1.25rem.
+         *
+         * @param string $padding
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function padding($padding = '1.25rem')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->padding($padding);
+        }
+                    /**
+         * Modal window background
+         * (CSS background property).
+         * 
+         * The default background is '#fff'.
+         *
+         * @param string $background
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function background($background = '#fff')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->background($background);
+        }
+                    /**
+         * Set to false if you want to
+         * focus the first element in tab
+         * order instead of "Confirm"-button by default.
+         *
+         * @param boolean $focus
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function focusConfirm($focus = true)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->focusConfirm($focus);
+        }
+                    /**
+         * Set to true if you want to focus the
+         * "Cancel"-button by default.
+         *
+         * @param boolean $focus
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function focusCancel($focus = false)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->focusCancel($focus);
+        }
+                    /**
+         * Custom animation with [Animate.css](https://daneden.github.io/animate.css/)
+         * CSS classes for animations when showing a popup (fade in):
+         * CSS classes for animations when hiding a popup (fade out):
+         *
+         * @param string $showAnimation
+         * @param string $hideAnimation
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function animation($showAnimation, $hideAnimation)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->animation($showAnimation, $hideAnimation);
+        }
+                    /**
+         * Persistent the alert modal
+         *
+         * @param boolean $showConfirmBtn
+         * @param boolean $showCloseBtn
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function persistent($showConfirmBtn = true, $showCloseBtn = false)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->persistent($showConfirmBtn, $showCloseBtn);
+        }
+                    /**
+         * auto close alert modal after
+         * specifid time
+         *
+         * @param integer $milliseconds
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function autoClose($milliseconds = 5000)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->autoClose($milliseconds);
+        }
+                    /**
+         * Display confirm button
+         *
+         * @param string $btnText
+         * @param string $btnColor
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function showConfirmButton($btnText = 'Ok', $btnColor = '#3085d6')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->showConfirmButton($btnText, $btnColor);
+        }
+                    /**
+         * Display cancel button
+         *
+         * @param string $btnText
+         * @param string $btnColor
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function showCancelButton($btnText = 'Cancel', $btnColor = '#aaa')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->showCancelButton($btnText, $btnColor);
+        }
+                    /**
+         * Display close button
+         *
+         * @param string $closeButtonAriaLabel
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function showCloseButton($closeButtonAriaLabel = 'aria-label')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->showCloseButton($closeButtonAriaLabel);
+        }
+                    /**
+         * Hide close button from alert or toast
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function hideCloseButton()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->hideCloseButton();
+        }
+                    /**
+         * Apply default styling to buttons.
+         * 
+         * If you want to use your own classes (e.g. Bootstrap classes)
+         * set this parameter to false.
+         *
+         * @param boolean $buttonsStyling
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function buttonsStyling($buttonsStyling)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->buttonsStyling($buttonsStyling);
+        }
+                    /**
+         * Use any HTML inside icons (e.g. Font Awesome)
+         *
+         * @param string $iconHtml
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function iconHtml($iconHtml)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->iconHtml($iconHtml);
+        }
+                    /**
+         * If set to true, the timer will have a progress bar at the bottom of a popup.
+         * 
+         * Mostly, this feature is useful with toasts.
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function timerProgressBar()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->timerProgressBar();
+        }
+                    /**
+         * Reverse buttons position
+         *
+         * @author Faber44 <https://github.com/Faber44>
+         * @static 
+         */ 
+        public static function reverseButtons()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->reverseButtons();
+        }
+                    /**
+         * Flash the config options for alert.
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function flash()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->flash();
+        }
+                    /**
+         * Build Flash config options for flashing.
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function buildConfig()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->buildConfig();
+        }
+         
+    }
+     
+}
+
+    namespace RicorocksDigitalAgency\Soap\Facades { 
+            /**
+     * Class Soap.
+     *
+     * @method static void fake(array|Closure $callable = null)
+     * @method static void assertSentCount($count)
+     * @method static void assertNothingSent()
+     * @method static void assertSent(callable $callback)
+     * @method static void assertNotSent(callable $callback)
+     */ 
+        class Soap {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function to($endpoint)
+        {
+                        /** @var \RicorocksDigitalAgency\Soap\Soap $instance */
+                        return $instance->to($endpoint);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function node($attributes = [])
+        {
+                        /** @var \RicorocksDigitalAgency\Soap\Soap $instance */
+                        return $instance->node($attributes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function header($name = null, $namespace = null, $data = null, $mustUnderstand = false, $actor = null)
+        {
+                        /** @var \RicorocksDigitalAgency\Soap\Soap $instance */
+                        return $instance->header($name, $namespace, $data, $mustUnderstand, $actor);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function include($parameters)
+        {
+                        /** @var \RicorocksDigitalAgency\Soap\Soap $instance */
+                        return $instance->include($parameters);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function options($options)
+        {
+                        /** @var \RicorocksDigitalAgency\Soap\Soap $instance */
+                        return $instance->options($options);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function headers(...$headers)
+        {
+                        /** @var \RicorocksDigitalAgency\Soap\Soap $instance */
+                        return $instance->headers(...$headers);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function beforeRequesting($hook)
+        {
+                        /** @var \RicorocksDigitalAgency\Soap\Soap $instance */
+                        return $instance->beforeRequesting($hook);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function afterRequesting($hook)
+        {
+                        /** @var \RicorocksDigitalAgency\Soap\Soap $instance */
+                        return $instance->afterRequesting($hook);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function trace($shouldTrace = true)
+        {
+                        /** @var \RicorocksDigitalAgency\Soap\Soap $instance */
+                        return $instance->trace($shouldTrace);
+        }
+                    /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+                        \RicorocksDigitalAgency\Soap\Soap::macro($name, $macro);
+        }
+                    /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin, $replace = true)
+        {
+                        \RicorocksDigitalAgency\Soap\Soap::mixin($mixin, $replace);
+        }
+                    /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+                        return \RicorocksDigitalAgency\Soap\Soap::hasMacro($name);
+        }
+                    /**
+         * Flush the existing macros.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function flushMacros()
+        {
+                        \RicorocksDigitalAgency\Soap\Soap::flushMacros();
+        }
+         
+    }
+     
+}
+
+    namespace Spatie\LaravelIgnition\Facades { 
             /**
      * 
      *
@@ -17029,6 +18263,38 @@
         public static function inertiaPage()
         {
                         return \Illuminate\Testing\TestResponse::inertiaPage();
+        }
+         
+    }
+     
+}
+
+    namespace Inertia { 
+            /**
+     * 
+     *
+     */ 
+        class Response {
+                    /**
+         * 
+         *
+         * @see \ProtoneMedia\LaravelQueryBuilderInertiaJs\InertiaTableServiceProvider::boot()
+         * @static 
+         */ 
+        public static function getQueryBuilderProps()
+        {
+                        return \Inertia\Response::getQueryBuilderProps();
+        }
+                    /**
+         * 
+         *
+         * @see \ProtoneMedia\LaravelQueryBuilderInertiaJs\InertiaTableServiceProvider::boot()
+         * @param callable|null $withTableBuilder
+         * @static 
+         */ 
+        public static function table($withTableBuilder = null)
+        {
+                        return \Inertia\Response::table($withTableBuilder);
         }
          
     }
@@ -19966,7 +21232,7 @@ namespace  {
                 /**
              * Add an "order by" clause to the query.
              *
-             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Expression|string $column
              * @param string $direction
              * @return \Illuminate\Database\Query\Builder 
              * @throws \InvalidArgumentException
@@ -19981,7 +21247,7 @@ namespace  {
                 /**
              * Add a descending "order by" clause to the query.
              *
-             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Query\Expression|string $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Expression|string $column
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -20786,6 +22052,12 @@ namespace  {
             class URL extends \Illuminate\Support\Facades\URL {}
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
+            class TCKimlikNo extends \Deligoez\TCKimlikNo\Facades\TCKimlikNo {}
+            class RouterOS extends \RouterOS\Laravel\Facade {}
+            class Clockwork extends \Clockwork\Support\Laravel\Facade {}
+            class Flash extends \Laracasts\Flash\Flash {}
+            class Alert extends \RealRashid\SweetAlert\Facades\Alert {}
+            class 0 extends \RicorocksDigitalAgency\Soap\Facades\Soap {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }

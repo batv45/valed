@@ -1,15 +1,16 @@
 <script>
 export default {
+    name: 'FormInput',
     inheritAttrs: false
 }
 </script>
 <script setup>
 import { onMounted, ref } from 'vue';
 import { v4 as uuid } from 'uuid'
-import VaLabel from "@/Components/Form/Label";
+import VaLabel from "@/Components/Form/Label.vue";
 
 const props = defineProps({
-    modelValue: String,
+    modelValue: [Number, String, Array],
     label: {
         type: String
     },
@@ -47,7 +48,7 @@ onMounted(() => {
 
 <template>
     <div>
-        <VaLabel :value="label" class="block font-medium text-sm text-gray-800 mb-1" :required="required" :for="id"><slot name="label"></slot></VaLabel>
+        <VaLabel :value="label" class="block font-medium text-sm text-gray-800 mb-2" :required="required" :for="id"><slot name="label"></slot></VaLabel>
         <div class="input-group input-group-flat">
             <input :id="id"
                    ref="input"

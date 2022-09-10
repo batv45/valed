@@ -1,18 +1,14 @@
 <template>
-    <Head title="ana sayfa "></Head>
+    <Head title="Ana Sayfa"></Head>
     <AppLayout>
         <PageHeader title="başlık" sub-title="alt başlık" />
-        anasayfa
+        <pre>{{$page.props.user}}</pre>
     </AppLayout>
 </template>
 
 <script setup>
 import {Head} from "@inertiajs/inertia-vue3"
-import AppLayout from "@/Layouts/AppLayout";
-import PageHeader from "@/Components/Layout/PageHeader";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import PageHeader from "@/Components/Layout/PageHeader.vue";
 </script>
-
-<style scoped>
-
-</style>
 

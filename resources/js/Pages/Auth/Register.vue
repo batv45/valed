@@ -60,7 +60,7 @@
                   </FormInput>
               </div>
               <div class="form-footer">
-                  <button type="submit" class="btn btn-primary w-100">Kayıt Ol</button>
+                  <button type="submit" class="btn btn-primary w-100" :class="{'btn-loading' : form.processing}">Kayıt Ol</button>
               </div>
           </div>
       </form>
@@ -72,8 +72,8 @@
 
 <script setup>
 import {Link, useForm} from "@inertiajs/inertia-vue3";
-import AuthLayout from "@/Layouts/AuthLayout";
-import FormInput from "@/Components/Form/Input"
+import AuthLayout from "@/Layouts/AuthLayout.vue";
+import FormInput from "@/Components/Form/Input.vue"
 import {ref} from "vue";
 
 const form = useForm({

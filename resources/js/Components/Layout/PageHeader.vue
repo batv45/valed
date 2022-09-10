@@ -4,9 +4,9 @@
 
             <div class="col">
                 <slot>
-                    <h2 class="page-title">
+                    <div class="page-title">
                         {{ title }}
-                    </h2>
+                    </div>
                     <span class="page-subtitle">
                         {{ subTitle }}
                     </span>

@@ -1,3 +1,33 @@
 .page-wrapper .page-header {
     margin: 0 0 1.25rem !important;
 }
+.notyf {
+    padding: 40px!important;
+}
+
+.navbar-expand-md .navbar-light .nav-item.active:after, .navbar-expand-md.navbar-light .nav-item.active:after {
+    content: none;
+}
+.navbar-expand-md .navbar-light .nav-item.active .nav-link, .navbar-expand-md.navbar-light .nav-item.active .nav-link {
+    background-color: rgba(32,107,196,.1);
+    color: #206bc4;
+}
+.icon{
+    stroke-width: 1.8px !important;
+}
+.dropdown-toggle:after {
+    margin-right: 0;
+    margin-left: .7em;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.form-number::-webkit-outer-spin-button,
+.form-number::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.form-number[type=number] {
+    -moz-appearance: textfield;
+}
