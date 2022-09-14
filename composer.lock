@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b1ae8d9ec4a0efef0c70be58bf5c6a9a",
+    "content-hash": "4fb40cb06f955ca6ae1596090ae8a748",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -383,6 +383,86 @@
                 "source": "https://github.com/DASPRiD/Enum/tree/1.0.3"
             },
             "time": "2020-10-02T16:03:48+00:00"
+        },
+        {
+            "name": "defstudio/ssh-client",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/def-studio/ssh-client.git",
+                "reference": "99aeb9bb1639012b53775dbf948233bf3b19d573"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/def-studio/ssh-client/zipball/99aeb9bb1639012b53775dbf948233bf3b19d573",
+                "reference": "99aeb9bb1639012b53775dbf948233bf3b19d573",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.37 || ^v9.0",
+                "php": "^8.0",
+                "phpseclib/phpseclib": "^2.0 || ^3.0",
+                "spatie/laravel-package-tools": "^1.9"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^5.10",
+                "nunomaduro/larastan": "^1.0",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "dev-master",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DefStudio\\Ssh\\SshServiceProvider"
+                    ],
+                    "aliases": {
+                        "Ssh": "DefStudio\\Ssh\\Facades\\Ssh"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DefStudio\\Ssh\\": "src",
+                    "DefStudio\\Ssh\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabio Ivona",
+                    "email": "fabio.ivona@defstudio.it",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel SSH2 wrapper",
+            "homepage": "https://github.com/defstudio/ssh-client",
+            "keywords": [
+                "defstudio",
+                "laravel",
+                "ssh-client"
+            ],
+            "support": {
+                "issues": "https://github.com/def-studio/ssh-client/issues",
+                "source": "https://github.com/def-studio/ssh-client/tree/main"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/defstudio",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-07-04T17:29:45+00:00"
         },
         {
             "name": "deligoez/tckimlikno",

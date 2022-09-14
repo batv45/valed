@@ -52,15 +52,16 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label class="form-label">Telefon Numarası</label>
+            <label class="form-label">Telefon Numarası <small>( Opsiyonel )</small></label>
             <input type="text" name="phone"
                    value="{{old('phone','5555555555')}}"
                    placeholder="5XX XXX XX XX"
                    x-mask="999 999 99 99"
                    class="form-control @error('phone') is-invalid @enderror"
                    autocomplete="off">
+            <small class="form-hint">* Doğrulama gerektirir.</small>
             @error('phone')
-            <div class="invalid-feedback">{{$message}}</div>
+            <div class="invalid-feedback d-block">{{$message}}</div>
             @enderror
         </div>
         <div class="form-footer">

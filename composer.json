@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.0.2",
         "barryvdh/laravel-ide-helper": "^2.12",
+        "defstudio/ssh-client": "*",
         "deligoez/tckimlikno": "^3.2",
         "evilfreelancer/routeros-api-php": "^1.4",
         "fowitech/laravel-sms": "dev-main",
