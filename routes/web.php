@@ -50,6 +50,7 @@ Route::group(['prefix' => 'hotspot-login','as' => 'hotspot-login.'],function(){
 
 Route::get('/test',function(){
     $val = \DB::connection('radius');
+    
     dd($val);
 });
 
