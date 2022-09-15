@@ -45,12 +45,12 @@ class HotspotSMSController extends Controller
 
         //
         if( !Hash::check($request->validated('code'),$hotspotAccount->phone_verified_token) ){
-
             return response()->json([
                 'verified' => false,
                 'phone' => $request->getPhone()
             ]);
         }
+
         if( $request->validated('account_id') > 0 ){
             $hotspotAccount = HotspotAccount::findOrFail($request->validated('account_id'));
 
