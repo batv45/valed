@@ -7,7 +7,12 @@
 
         <title inertia>{{ config('app.name', 'Valed') }}</title>
 
-        <!-- Scripts -->
+        <style>
+            @import url('https://rsms.me/inter/inter.css');
+            :root {
+                --tblr-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+            }
+        </style>
         @routes
         @vite('resources/js/app.js')
         @inertiaHead

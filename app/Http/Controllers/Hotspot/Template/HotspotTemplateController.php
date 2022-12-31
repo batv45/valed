@@ -18,6 +18,7 @@ class HotspotTemplateController extends Controller
             Log::alert('Varsayılan login.html dosyası bulunamadı!');
             abort(404, 'Varsayılan login.html dosyası bulunamadı!');
         }
+
         $html = str_replace(['{{$title}}','{{$action}}'],[$hotspot->name. ' - Giriş',route('hotspot-login.index',$hotspot->id)],$contents);
 
         return \Response::make($html,200,[
