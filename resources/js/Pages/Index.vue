@@ -1,7 +1,7 @@
 <template>
     <Head title="Ana Sayfa"></Head>
     <AppLayout>
-        <PageHeader title="başlık" sub-title="alt başlık" />
+        <PageHeader title="Ana Sayfa" sub-title="Hotspot Dashboard" />
         <pre>{{$page.props.user}}</pre>
     </AppLayout>
 </template>
