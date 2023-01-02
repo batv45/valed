@@ -1,1 +1,0 @@
-import{o as r,c as s,f as o,a as t}from"./app.5b90729d.js";const a={key:0,class:"progress progress-sm card-progress"},c=t("div",{class:"progress-bar progress-bar-indeterminate",role:"progressbar"},null,-1),n=[c],i={__name:"CardProgress",props:{progress:{type:Boolean,required:!0}},setup(e){return(p,_)=>e.progress?(r(),s("div",a,n)):o("",!0)}};export{i as _};
